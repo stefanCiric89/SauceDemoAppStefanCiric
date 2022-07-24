@@ -1,8 +1,6 @@
 import com.saucedemo.pages.LoginPage;
 import com.saucedemo.pages.ProductPage;
 import com.saucedemo.pages.YourCartPage;
-import com.saucedemo.provider.ProductNameProvider;
-import com.saucedemo.provider.UserNameProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -13,7 +11,7 @@ import java.util.List;
 
 public class VerifyAddProductToCart extends BaseTest {
 
-  /*  @Test
+    @Test
     public void VerifyAddProductToCartByProductName() {
 
         LoginPage loginPage = new LoginPage(webDriver);
@@ -39,20 +37,17 @@ public class VerifyAddProductToCart extends BaseTest {
         Assert.assertEquals(yourCartPage.isYourCartPageDisplayed(), true, "Login failed! :-(");
 
 
-        WebElement cartList = webDriver.findElement(By.id("shopping_cart_container"));
-        List<WebElement> listCartItem = cartList.findElements(By.xpath(".//span"));
-
+        WebElement shoppingCartContainer = webDriver.findElement(By.id("shopping_cart_container"));
+        List<WebElement> shoppingCartBadge = shoppingCartContainer.findElements(By.xpath(".//span"));
         Integer numOfProductsBeforeAdd;
-
-        if(listCartItem.size() > 0) {
+        if(shoppingCartBadge.size() > 0) {
             numOfProductsBeforeAdd = 0;
         } else {
-            numOfProductsBeforeAdd = Integer.parseInt(listCartItem.get(0).getText());
+            numOfProductsBeforeAdd = Integer.parseInt(shoppingCartBadge.get(0).getText());
         }
-
-        Assert.assertEquals(Integer.parseInt(listCartItem.get(0).getText()), numOfProductsBeforeAdd + 6);
+        Assert.assertEquals(Integer.parseInt(shoppingCartBadge.get(0).getText()), numOfProductsBeforeAdd + 6);
     }
-*/
+
     @Test
     public void VerifyAddCheapestProductToCart_withSortLoHi() throws InterruptedException {
 
@@ -62,15 +57,13 @@ public class VerifyAddProductToCart extends BaseTest {
         loginPage.setInpPassword("secret_sauce");
         loginPage.clickOnLoginBtn();
 
-        YourCartPage yourCartPage = new YourCartPage(webDriver);
-        yourCartPage.isYourCartPageEmpty();
-
         ProductPage productPage = new ProductPage(webDriver);
         Assert.assertEquals(productPage.isProductPageDisplayed(), true, "Login failed! :-(");
         productPage.selectLowToHigh();
         Thread.sleep(2000);
         productPage.getFirstProductFromList();
 
+        YourCartPage yourCartPage = new YourCartPage(webDriver);
         yourCartPage.openPage();
         String actualFirstProductNameFromList = yourCartPage.getFirstProductName().getText();
         Assert.assertEquals(actualFirstProductNameFromList,"Sauce Labs Onesie","Your cart is empty! :-(");
@@ -85,14 +78,13 @@ public class VerifyAddProductToCart extends BaseTest {
         loginPage.setInpPassword("secret_sauce");
         loginPage.clickOnLoginBtn();
 
-        YourCartPage yourCartPage = new YourCartPage(webDriver);
-        yourCartPage.isYourCartPageEmpty();
-
         ProductPage productPage = new ProductPage(webDriver);
+        productPage.openPage();
         Assert.assertEquals(productPage.isProductPageDisplayed(), true, "Login failed! :-(");
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         productPage.addCheapestProduct(productPage.cheapestProduct());
 
+        YourCartPage yourCartPage = new YourCartPage(webDriver);
         yourCartPage.openPage();
         String actualCheapestProductName = yourCartPage.getCheapestProductName().getText();
         Assert.assertEquals(actualCheapestProductName,"Sauce Labs Onesie","Your cart is empty! :-(");

@@ -13,6 +13,11 @@ public class ProductPage extends BasePage {
         this.url = super.url + "inventory.html";
     }
 
+    public void openPage() {
+        webDriver.get(this.url);
+        webDriver.manage().window().maximize();
+    }
+
 
 
     public Boolean isProductPageDisplayed() {

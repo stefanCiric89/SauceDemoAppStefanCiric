@@ -67,7 +67,7 @@ public class YourCartPage extends BasePage {
 
     /////////////////////////////////////////////////////////////////
 
-    public HashMap<String, Integer> verifyProductNumberInCart() {
+    /*public HashMap<String, Integer> verifyProductNumberInCart() {
 
         HashMap<String,Integer> returnValue = new HashMap<String, Integer>();
         List<WebElement> cartItems = webDriver.findElements(By.className("cart_item"));
@@ -82,7 +82,7 @@ public class YourCartPage extends BasePage {
             }
         }
         return returnValue;
-    }
+    }*/
 
     /////////////////////////////////////////////////////////////////////////
 
@@ -98,8 +98,8 @@ public class YourCartPage extends BasePage {
     public WebElement getCheapestProductName() {
         return webDriver.findElement(By.xpath("//div[@class='inventory_item_name']"));
     }
+
     public WebElement getFirstProductName() {
         return webDriver.findElement(By.xpath("//div[@class='inventory_item_name']"));
     }
-
 }
