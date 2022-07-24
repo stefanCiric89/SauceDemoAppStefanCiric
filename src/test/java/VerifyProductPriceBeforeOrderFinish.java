@@ -48,7 +48,7 @@ public class VerifyProductPriceBeforeOrderFinish extends BaseTest{
     }
 
     @Test
-    public void TotalPriceWithTax(){
+    public void TotalPriceWithTax() {
 
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.openPage();
@@ -62,7 +62,10 @@ public class VerifyProductPriceBeforeOrderFinish extends BaseTest{
         productPage.clickCartBtn();
 
         YourCartPage yourCartPage = new YourCartPage(webDriver);
+        yourCartPage.eliminateProductFromYourCartByName("Sauce Labs Backpack");
+        yourCartPage.eliminateProductFromYourCartByName("Sauce Labs Bike Light");
         yourCartPage.clickCheckoutBtn();
+
 
         CheckoutYourInformationPage checkoutYourInformationPage = new CheckoutYourInformationPage(webDriver);
         checkoutYourInformationPage.setInpYourFirstName("Stefan");

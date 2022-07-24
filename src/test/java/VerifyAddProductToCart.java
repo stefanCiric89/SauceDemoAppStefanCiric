@@ -1,6 +1,7 @@
 import com.saucedemo.pages.LoginPage;
 import com.saucedemo.pages.ProductPage;
 import com.saucedemo.pages.YourCartPage;
+import com.saucedemo.provider.ProductNameProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -45,7 +46,7 @@ public class VerifyAddProductToCart extends BaseTest {
         } else {
             numOfProductsBeforeAdd = Integer.parseInt(shoppingCartBadge.get(0).getText());
         }
-        Assert.assertEquals(Integer.parseInt(shoppingCartBadge.get(0).getText()), numOfProductsBeforeAdd + 6);
+        Assert.assertEquals(Integer.parseInt(shoppingCartBadge.get(0).getText()), numOfProductsBeforeAdd + 5);
     }
 
     @Test
@@ -67,6 +68,8 @@ public class VerifyAddProductToCart extends BaseTest {
         yourCartPage.openPage();
         String actualFirstProductNameFromList = yourCartPage.getFirstProductName().getText();
         Assert.assertEquals(actualFirstProductNameFromList,"Sauce Labs Onesie","Your cart is empty! :-(");
+        yourCartPage.eliminateProductFromYourCartByName("Sauce Labs Onesie");
+
     }
 
     @Test
@@ -88,5 +91,6 @@ public class VerifyAddProductToCart extends BaseTest {
         yourCartPage.openPage();
         String actualCheapestProductName = yourCartPage.getCheapestProductName().getText();
         Assert.assertEquals(actualCheapestProductName,"Sauce Labs Onesie","Your cart is empty! :-(");
+        yourCartPage.eliminateProductFromYourCartByName("Sauce Labs Onesie");
     }
 }
