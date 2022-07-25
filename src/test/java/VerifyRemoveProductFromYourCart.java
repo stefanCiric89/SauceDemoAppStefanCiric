@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 public class VerifyRemoveProductFromYourCart extends BaseTest {
 
     @Test(dataProvider = "ProductNameProvider", dataProviderClass = ProductNameProvider.class)
-    public void VerifyAddProductToCartByProductName(String productName) throws InterruptedException {
+    public void VerifyRemoveProductFromCartByProductName(String productName) throws InterruptedException {
 
         LoginPage loginPage = new LoginPage(webDriver);
 
@@ -28,7 +28,8 @@ public class VerifyRemoveProductFromYourCart extends BaseTest {
         YourCartPage yourCartPage = new YourCartPage(webDriver);
         Assert.assertEquals(yourCartPage.isYourCartPageDisplayed(), true, "Login failed! :-(");
         Thread.sleep(2000);
-        yourCartPage.eliminateProductFromYourCartByName("Sauce Labs Backpack");
+        yourCartPage.eliminateProductFromYourCartByName(productName);
+        //yourCartPage.eliminateProductFromYourCartByName("Sauce Labs Backpack");
         //yourCartPage.eliminateProductFromYourCartByName("Sauce Labs Bolt T-Shirt");
         Assert.assertEquals(yourCartPage.isYourCartPageEmpty(),true, "Your shopping cart is not empty");
     }

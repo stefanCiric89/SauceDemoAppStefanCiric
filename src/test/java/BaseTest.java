@@ -13,7 +13,7 @@ public class BaseTest {
         this.webDriver = new ChromeDriver();
     }
 
-   /*@AfterClass
+  /* @AfterClass
     public void close() {
         this.webDriver.quit();
     }*/

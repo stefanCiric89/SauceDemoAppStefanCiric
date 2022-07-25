@@ -143,5 +143,22 @@ public class ProductPage extends BasePage {
         btnAddItem.click();
     }
 
+    public void eliminateProductFromProductPageByName(String productName) {
+
+        WebElement listInventoryContainer = webDriver.findElement(By.className("inventory_list"));
+        List<WebElement> inventoryList = listInventoryContainer.findElements(By.className("inventory_item"));
+
+        Integer indexElement = 0;
+        for (int i = 0; i < inventoryList.size(); i++) {
+            WebElement inventoryItemName = inventoryList.get(i).findElement(By.className("inventory_item_name"));
+            if (inventoryItemName.getText().equals(productName)) {
+                indexElement = i;
+                break;
+            }
+        }
+        WebElement removeButton = inventoryList.get(indexElement).findElement(By.xpath(".//button"));
+        removeButton.click();
+    }
+
 
 }

@@ -34,8 +34,8 @@ public class YourCartPage extends BasePage {
         }
         WebElement removeButton = cartItem.get(indexElement).findElement(By.xpath(".//button"));
         removeButton.click();
-
     }
+
 
     public Boolean isYourCartPageDisplayed() {
 
@@ -51,6 +51,7 @@ public class YourCartPage extends BasePage {
         return toReturn;
     }
 
+
     public Boolean isYourCartPageEmpty() {
 
         Boolean toReturn = true;
@@ -64,27 +65,6 @@ public class YourCartPage extends BasePage {
         }
         return toReturn;
     }
-
-    /////////////////////////////////////////////////////////////////
-
-    /*public HashMap<String, Integer> verifyProductNumberInCart() {
-
-        HashMap<String,Integer> returnValue = new HashMap<String, Integer>();
-        List<WebElement> cartItems = webDriver.findElements(By.className("cart_item"));
-
-        for (int i = 0; i < cartItems.size(); i++) {
-            String cartItem = cartItems.get(i).findElement(By.xpath(".//div[@class='inventory_item_name']")).getText();
-            if (returnValue.containsKey(cartItem)) {
-                int tempCount = returnValue.get(cartItem);
-                returnValue.put(cartItem,tempCount++);
-            } else {
-                returnValue.put(cartItem, 1);
-            }
-        }
-        return returnValue;
-    }*/
-
-    /////////////////////////////////////////////////////////////////////////
 
 
     private WebElement getCheckoutBtn() {

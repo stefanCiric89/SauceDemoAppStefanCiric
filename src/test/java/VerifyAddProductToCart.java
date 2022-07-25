@@ -25,6 +25,15 @@ public class VerifyAddProductToCart extends BaseTest {
         ProductPage productPage = new ProductPage(webDriver);
         Assert.assertEquals(productPage.isProductPageDisplayed(), true, "Login failed! :-(");
 
+        WebElement shoppingCartContainer = webDriver.findElement(By.id("shopping_cart_container"));
+        List<WebElement> shoppingCartBadge = shoppingCartContainer.findElements(By.xpath(".//span"));
+        Integer numOfProductsBeforeAdd;
+        if(shoppingCartBadge.size() == 0) {
+            numOfProductsBeforeAdd = 0;
+        } else {
+            numOfProductsBeforeAdd = Integer.parseInt(shoppingCartBadge.get(0).getText());
+        }
+
         productPage.selectZToA();
         productPage.addProductToCartByName("Sauce Labs Backpack");
         productPage.addProductToCartByName("Sauce Labs Bolt T-Shirt");
@@ -34,19 +43,13 @@ public class VerifyAddProductToCart extends BaseTest {
         productPage.addProductToCartByName("Test.allTheThings() T-Shirt (Red)");
         productPage.clickCartBtn();
 
-        YourCartPage yourCartPage = new YourCartPage(webDriver);
-        Assert.assertEquals(yourCartPage.isYourCartPageDisplayed(), true, "Login failed! :-(");
+        //YourCartPage yourCartPage = new YourCartPage(webDriver);
+        //Assert.assertEquals(yourCartPage.isYourCartPageDisplayed(), true, "Login failed! :-(");
 
+         shoppingCartContainer = webDriver.findElement(By.id("shopping_cart_container"));
+         shoppingCartBadge = shoppingCartContainer.findElements(By.xpath(".//span"));
 
-        WebElement shoppingCartContainer = webDriver.findElement(By.id("shopping_cart_container"));
-        List<WebElement> shoppingCartBadge = shoppingCartContainer.findElements(By.xpath(".//span"));
-        Integer numOfProductsBeforeAdd;
-        if(shoppingCartBadge.size() > 0) {
-            numOfProductsBeforeAdd = 0;
-        } else {
-            numOfProductsBeforeAdd = Integer.parseInt(shoppingCartBadge.get(0).getText());
-        }
-        Assert.assertEquals(Integer.parseInt(shoppingCartBadge.get(0).getText()), numOfProductsBeforeAdd + 5);
+        Assert.assertEquals(Integer.parseInt(shoppingCartBadge.get(0).getText()), numOfProductsBeforeAdd + 6);
     }
 
     @Test

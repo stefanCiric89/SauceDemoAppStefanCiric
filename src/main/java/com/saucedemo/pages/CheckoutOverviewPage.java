@@ -14,11 +14,49 @@ public class CheckoutOverviewPage extends BasePage {
     }
 
 
-    private WebElement getCartFooterBtn() {
+    private WebElement getCartFooterFinishBtn() {
         return webDriver.findElement(By.id("finish"));
     }
 
     public void clickFinishBtn() {
-        this.getCartFooterBtn().click();
+        this.getCartFooterFinishBtn().click();
+    }
+
+    private WebElement getCartFooterCancelBtn() {
+        return webDriver.findElement(By.id("cancel"));
+    }
+
+    public void clickCancelBtn() {
+        this.getCartFooterCancelBtn().click();
+    }
+
+
+
+
+    public Double getItemPriceOnIndex(Integer index) {
+
+        List<WebElement> cartList = webDriver.findElements(By.className("cart_item"));
+        double itemPrice = Double.parseDouble(cartList.get(index).findElement(By.className("inventory_item_price")).getText().substring(1));
+        return itemPrice;
+    }
+
+    public Double getSubtotalItemPrice() {
+
+        WebElement summarySubtotalLabel = webDriver.findElement(By.className("summary_subtotal_label"));
+        double summaryItemTotal = Double.parseDouble(summarySubtotalLabel.getText().substring(13));
+        return summaryItemTotal;
+    }
+
+    public Double getTaxOnGoods() {
+        WebElement summaryInfoTax = webDriver.findElement(By.className("summary_tax_label"));
+        double taxOnGoods = Double.parseDouble(summaryInfoTax.getText().substring(6));
+        return taxOnGoods;
+    }
+
+    public Double getTotalProductPrice() {
+
+        WebElement summaryInfoTotal = webDriver.findElement(By.className("summary_total_label"));
+        double summaryTotal = Double.parseDouble(summaryInfoTotal.getText().substring(8));
+        return summaryTotal;
     }
 }
