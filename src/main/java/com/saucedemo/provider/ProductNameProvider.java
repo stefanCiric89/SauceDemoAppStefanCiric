@@ -9,9 +9,9 @@ public class ProductNameProvider {
         return new Object[][] {
                 //{"Sauce Labs Backpack"},
                 {"Sauce Labs Bike Light"},
-                {"Sauce Labs Bolt T-Shirt"},
-                {"Sauce Labs Fleece Jacket"},
-                {"Sauce Labs Onesie"},
+                //{"Sauce Labs Bolt T-Shirt"},
+                //{"Sauce Labs Fleece Jacket"},
+                //{"Sauce Labs Onesie"},
                 {"Test.allTheThings() T-Shirt (Red)"}
         };
     }
